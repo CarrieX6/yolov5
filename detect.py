@@ -39,7 +39,7 @@ import torch
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # YOLOv5 root directory
-if str(ROOT) not in sys.path:
+if str(ROOT) not in sys.path: #模块的查询路径
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
@@ -270,7 +270,7 @@ def parse_opt():
     parser.add_argument('--dnn', action='store_true', help='use OpenCV DNN for ONNX inference')
     parser.add_argument('--vid-stride', type=int, default=1, help='video frame-rate stride')
     opt = parser.parse_args()
-    opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expand
+    opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expand  确保传入的图片维度为2
     print_args(vars(opt))
     return opt
 
@@ -281,5 +281,5 @@ def main(opt):
 
 
 if __name__ == '__main__':
-    opt = parse_opt()
+    opt = parse_opt() # 解析输入参数
     main(opt)
